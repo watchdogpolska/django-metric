@@ -14,7 +14,7 @@ from .models import Item, Value, Graph
 
 
 class MetricIndexView(TemplateView):
-    template_name = 'stats/index.html'
+    template_name = 'metric/index.html'
 
     def get_context_data(self, **kwargs):
         kwargs['item_list'] = Item.objects.for_user(self.request.user).all()
@@ -50,7 +50,7 @@ class ValueListView(TimeMixin):
 
 
 class ValueBrowseListView(ValueListView, TemplateView):
-    template_name = "stats/item_details.html"
+    template_name = "metric/item_details.html"
 
     def get_context_data(self, **kwargs):
         item = self.item
@@ -145,7 +145,7 @@ class GraphTimeMixin(TimeMixin):
 
 
 class GraphDetailView(GraphTimeMixin, TemplateView):
-    template_name = "stats/graph_details.html"
+    template_name = "metric/graph_details.html"
 
     def get_context_data(self, **kwargs):
         kwargs['object'] = self.object
