@@ -9,7 +9,7 @@ with open(readme_file, 'r') as f:
 
 tests_require= [
         'django-environ',
-        'factory',
+        'factory_boy',
         'django-environ'
     ]
 setup(
@@ -28,7 +28,6 @@ setup(
     install_requires=[
         'django-braces',
         'python-dateutil',
-        'factory',
         'django-model-utils',
     ],
     tests_require=tests_require,
