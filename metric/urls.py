@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from . import views
 
+app_name = 'metric'
+
 urlpatterns = [
     url(r'^$', views.MetricIndexView.as_view(), name="index"),
     url(_(r'^item-(?P<key>[\w\-.]+)/$'), views.ValueBrowseListView.as_view(),
