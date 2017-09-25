@@ -1,6 +1,5 @@
 import os
-from setuptools import setup
-
+from setuptools import setup, find_packages
 
 version = '0.0.1'
 
@@ -8,10 +7,14 @@ readme_file = os.path.join(os.path.dirname(__file__), 'README.rst')
 with open(readme_file, 'r') as f:
     long_description = f.read()
 
+tests_require= [
+        'django-environ',
+        'factory',
+        'django-environ'
+    ]
 setup(
     name='django-metric',
     version=version,
-    setup_requires=['pytest-runner', ],
     url='',
     author='',
     author_email='',
@@ -19,30 +22,19 @@ setup(
     description="",
     long_description=long_description,
     zip_safe=False,
-    packages=[
-        'metric',
-        'metric.management',
-        'metric.migrations',
-        'metric.testapp',
-        'metric.templatetags',
-    ],
+    packages=find_packages(include=('metric.*')),
     include_package_data=True,
     license='BSD',
     install_requires=[
-        'six',
-        'django-braces',
         'django-braces',
         'python-dateutil',
         'factory',
         'django-model-utils',
     ],
-    tests_require=[
-        'mock',
-        'django-environ',
-        'pytest',
-        'pytest-django',
-        'factory'
-    ],
+    tests_require=tests_require,
+    extras_require={
+        'tests': tests_require
+    },
     classifiers=['Development Status :: 3 - Alpha',
                  'Environment :: Web Environment',
                  'Framework :: Django',

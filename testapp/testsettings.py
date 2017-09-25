@@ -22,7 +22,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     'metric',
-    'metric.testapp',
+    'testapp',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -42,7 +42,7 @@ if django.VERSION < (1, 10):
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
-ROOT_URLCONF = 'metric.testapp.urls'
+ROOT_URLCONF = 'testapp.urls'
 SITE_ID = 1
 
 STATIC_URL = '/static/'
