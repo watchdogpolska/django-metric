@@ -65,7 +65,7 @@ class ValueQueryset(QuerySet):
 
 
 class Value(models.Model):
-    item = models.ForeignKey(Item)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     time = models.DateTimeField(db_index=True, default=now)
     value = models.IntegerField()
     comment = models.CharField(max_length=150)
