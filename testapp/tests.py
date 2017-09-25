@@ -1,10 +1,13 @@
 import re
 from django.core.management import call_command
-from django.core.urlresolvers import reverse
 from django.test import TestCase
 
 from metric.factories import ItemFactory, ValueFactory
 from django.utils.six import StringIO
+try:
+    from django.core.urlresolvers import reverse
+except ImportError:
+    from django.urls import reverse
 
 
 class ValueBrowseListViewTestCase(TestCase):
