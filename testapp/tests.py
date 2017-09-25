@@ -3,8 +3,7 @@ from django.core.management import call_command
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 
-
-from .factories import ItemFactory, ValueFactory
+from metric.factories import ItemFactory, ValueFactory
 from django.utils.six import StringIO
 
 
@@ -34,9 +33,8 @@ class CSVValueListViewTestCase(TestCase):
         self.obj = ItemFactory()
         self.values = ValueFactory.create_batch(size=10, item=self.obj)
         self.url = reverse('metric:item_detail_csv', kwargs={'key': self.obj.key,
-                                                            'month': self.values[0].time.month,
-                                                            'year': self.values[0].time.year,
-                                                            })
+                                                             'month': self.values[0].time.month,
+                                                             'year': self.values[0].time.year})
 
     def test_valid_status_code_for_detail_page(self):
         response = self.client.get(self.url)

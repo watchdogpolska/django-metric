@@ -20,7 +20,6 @@ class ItemQueryset(QuerySet):
             item.last_value = items.get(item.pk, None)
         # result.append(item)
         yield item
-        # return result
 
 
 @python_2_unicode_compatible
@@ -41,7 +40,7 @@ class Item(TimeStampedModel):
 
     def __str__(self):
         if self.name == self.key:
-            return _(self.name)
+            return str(_(self.name))
         return "{} [{}]".format(_(self.name), self.key)
 
     def as_dict(self):
@@ -52,7 +51,7 @@ class Item(TimeStampedModel):
                 'public': self.public}
 
     def get_absolute_url(self):
-        return reverse('stats:item_detail', kwargs={'key': self.key})
+        return reverse('metric:item_detail', kwargs={'key': self.key})
 
 
 class ValueQueryset(QuerySet):
@@ -86,7 +85,7 @@ class Graph(models.Model):
     items = models.ManyToManyField(Item, verbose_name=_("Items"))
 
     def get_absolute_url(self):
-        return reverse('stats:graph_detail', kwargs={'pk': self.pk})
+        return reverse('metric:graph_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name

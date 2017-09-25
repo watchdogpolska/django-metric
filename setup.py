@@ -29,6 +29,7 @@ setup(
         'django-braces',
         'python-dateutil',
         'django-model-utils',
+        'monotonic'
     ],
     tests_require=tests_require,
     extras_require={

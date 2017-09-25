@@ -4,8 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.MetricIndexView.as_view(),
-        name="index"),
+    url(r'^$', views.MetricIndexView.as_view(), name="index"),
     url(_(r'^item-(?P<key>[\w\-.]+)/$'), views.ValueBrowseListView.as_view(),
         name="item_detail"),
     url(_(r'^item-(?P<key>[\w\-.]+)/(?P<month>\d+)/(?P<year>\d+)/~csv$'), views.CSVValueListView.as_view(),

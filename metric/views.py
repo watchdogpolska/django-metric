@@ -21,7 +21,7 @@ class ApiListViewMixin(JSONResponseMixin):
 
 
 class MetricIndexView(TemplateView):
-    template_name = 'metric/index.html'
+    template_name = 'stats/index.html'
 
     def get_context_data(self, **kwargs):
         kwargs['item_list'] = Item.objects.for_user(self.request.user).all()

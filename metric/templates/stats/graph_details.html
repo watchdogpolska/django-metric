@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'stats/base.html' %}
 {% load staticfiles i18n stats_tags %}
 {% block title %}{{ object }} - {{ block.super }}{% endblock %}
 
@@ -39,7 +39,7 @@
 {% endblock %}
 {% block breadcrumbs %}
     <ol class="breadcrumb">
-        <li><a href="{% url 'stats:index' %}">{% trans 'Stats' %}</a></li>
+        <li><a href="{% url 'metric:index' %}">{% trans 'Stats' %}</a></li>
         <li class="active">{{ object }}</li>
     </ol>
 {% endblock %}

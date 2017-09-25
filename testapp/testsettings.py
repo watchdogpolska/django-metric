@@ -10,9 +10,6 @@ DEBUG = True
 
 ANONYMOUS_USER_NAME = "AnonymousUser"
 
-AUTH_USER_MODEL = "testapp.CustomUser"
-GUARDIAN_MONKEY_PATCH = False
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +51,7 @@ SECRET_KEY = ''.join([random.choice(string.ascii_letters) for x in range(40)])
 DATABASES = {'default': env.db(default="sqlite:///")}
 
 USE_TZ = True
+USE_I18N = True
 
 TEMPLATES = [
     {
@@ -78,3 +76,6 @@ TEMPLATES = [
 
 if django.VERSION < (1, 8):
     TEMPLATE_DIRS = TEMPLATES[0]['DIRS']
+
+STAT_METRICS = {'news.count': 'testapp.test_metric.news_count',
+                'news.today': 'testapp.test_metric.news_daily'}
