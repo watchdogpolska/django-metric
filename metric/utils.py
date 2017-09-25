@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 def filter_today(qs, field):
     today = datetime.today()
     return qs.filter(**{'{}__date__gte'.format(field): today})

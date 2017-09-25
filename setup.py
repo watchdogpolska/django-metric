@@ -7,7 +7,7 @@ readme_file = os.path.join(os.path.dirname(__file__), 'README.rst')
 with open(readme_file, 'r') as f:
     long_description = f.read()
 
-tests_require= [
+tests_require = [
         'django-environ',
         'factory_boy',
         'django-environ'
