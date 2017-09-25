@@ -72,9 +72,6 @@ class JSONValueListViewTestCase(TestCase):
 
 
 class TestManagementCommand(TestCase):
-    def test_command_no_raises_exception(self):
-        call_command('update_metric')
-
     def test_command_outputs(self):
         out = StringIO()
         call_command('update_metric', stdout=out)

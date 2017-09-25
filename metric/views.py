@@ -3,7 +3,6 @@ import json
 from collections import OrderedDict
 from datetime import datetime
 
-from braces.views import (JSONResponseMixin)
 from dateutil.relativedelta import relativedelta
 from django.db.models import Prefetch
 from django.http import HttpResponse
@@ -12,11 +11,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic import TemplateView, View
 from django.utils import timezone
 from .models import Item, Value, Graph
-
-
-class ApiListViewMixin(JSONResponseMixin):
-    def get(self, request, *args, **kwargs):
-        return self.render_json_response(self.get_object_list())
 
 
 class MetricIndexView(TemplateView):
@@ -67,27 +61,40 @@ class ValueBrowseListView(ValueListView, TemplateView):
 
 
 class CSVValueListView(ValueListView, View):
-    def get(self, *args, **kwargs):
+    def _get_csv_response(self):
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="{}.csv"'.format(self.item.key)
+        return response
+
+    def get(self, *args, **kwargs):
+        response = self._get_csv_response()
+        self._write_rows(response, self.get_queryset())
+        return response
+
+    def _write_rows(self, response, queryset):
         writer = csv.writer(response)
         writer.writerow([_("Key"), _("Name"), _("Time"), _("Time (unix)"), _("Value")])
-        for item in self.get_queryset():
+        for item in queryset:
             writer.writerow([self.item.key.encode('utf-8'),
                              self.item.name.encode('utf-8'),
                              item.time.strftime("%c"),
                              item.time.strftime("%s"),
                              item.value])
-        return response
 
 
 class JSONValueListView(ValueListView, View):
+    def _get_json_response(self):
+        return HttpResponse(content_type='application/json')
+
     def get(self, *args, **kwargs):
-        response = HttpResponse(content_type='application/json')
-        data = {'item': self.item.as_dict(),
-                'values': [o.as_dict() for o in self.get_queryset()]}
-        json.dump(data, response, indent=4)
+        response = self._get_json_response()
+        self._write_rows(response, self.get_queryset())
         return response
+
+    def _write_rows(self, response, queryset):
+        data = {'item': self.item.as_dict(),
+                'values': [o.as_dict() for o in queryset]}
+        json.dump(data, response, indent=4)
 
 
 class GraphTimeMixin(TimeMixin):

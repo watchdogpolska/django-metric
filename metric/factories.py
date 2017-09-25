@@ -10,7 +10,7 @@ class ItemFactory(factory.django.DjangoModelFactory):
     name = factory.Sequence("item-name-{0}".format)
     description = factory.fuzzy.FuzzyText()
     last_updated = factory.fuzzy.FuzzyDateTime(datetime(2008, 1, 1, tzinfo=pytz.utc))
-    public = factory.Sequence(lambda n: n % 2 == 0)
+    public = True
 
     class Meta:
         model = 'metric.Item'
