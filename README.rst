@@ -1,3 +1,5 @@
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fdjango-metric.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fdjango-metric?ref=badge_shield)
+
 django-metric
 ==============================
 
@@ -22,3 +24,6 @@ To install ``django-metric`` simply run::
 ````python
 pip install django-guardian
 ````
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fdjango-metric.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fwatchdogpolska%2Fdjango-metric?ref=badge_large)
